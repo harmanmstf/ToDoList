@@ -2,11 +2,12 @@
     <string name="app_name">To Do List</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="add_fragment_title">Add Item</string>
+    <string name="add_fragment_title">Add Task</string>
     <string name="save_action">Save</string>
     <string name="delete">delete</string>
     <string name="done">DONE</string>
     <string name="edit_task">Edit Task</string>
+    <string name="to_do_list_fragment">To Do List</string>
 
     <string name="sell">Sell</string>
     <string name="quantity">Quantity in Stock:</string>
