@@ -1,4 +1,4 @@
-package com.example.todolist
+package com.example.todolist.ui.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,11 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.todolist.*
 import com.example.todolist.databinding.FragmentToDoListBinding
 
-/**
- * Main fragment displaying details for all items in the database.
- */
+
 class ToDoListFragment : Fragment() {
     private val viewModel: ToDoListViewModel by activityViewModels {
         InventoryViewModelFactory(
@@ -27,7 +26,7 @@ class ToDoListFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentToDoListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -42,8 +41,6 @@ class ToDoListFragment : Fragment() {
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
         binding.recyclerView.adapter = adapter
-        // Attach an observer on the allItems list to update the UI automatically when the data
-        // changes.
         viewModel.allItems.observe(this.viewLifecycleOwner) { items ->
             items.let {
                 adapter.submitList(it)

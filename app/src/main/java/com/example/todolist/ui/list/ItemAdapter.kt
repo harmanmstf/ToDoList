@@ -1,17 +1,13 @@
-package com.example.todolist
-
+package com.example.todolist.ui.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.todolist.databinding.ListItemBinding
 import com.example.todolist.data.Item
+import com.example.todolist.databinding.ListItemBinding
 
-/**
- * [ListAdapter] implementation for the recyclerview.
- */
 
 class ItemListAdapter(private val onItemClicked: (Item) -> Unit) :
     ListAdapter<Item, ItemListAdapter.ItemViewHolder>(DiffCallback) {

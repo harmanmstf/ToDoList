@@ -1,4 +1,6 @@
-package com.example.todolist
+package com.example.todolist.ui.taskdetail
+
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,15 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.todolist.R
+import com.example.todolist.ToDoListApplication
 import com.example.todolist.data.Item
-
-
 import com.example.todolist.databinding.FragmentTaskDetailBinding
+import com.example.todolist.ui.list.InventoryViewModelFactory
+import com.example.todolist.ui.list.ToDoListViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-/**
- * [ItemDetailFragment] displays the details of the selected item.
- */
+
 class TaskDetailFragment : Fragment() {
     private val navigationArgs: TaskDetailFragmentArgs by navArgs()
     lateinit var item: Item
@@ -32,15 +34,13 @@ class TaskDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        savedInstanceState: Bundle?,
+    ): View {
         _binding = FragmentTaskDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    /**
-     * Binds views with the passed in item data.
-     */
+
     private fun bind(item: Item) {
         binding.apply {
             taskName.text = item.itemTask
@@ -49,9 +49,7 @@ class TaskDetailFragment : Fragment() {
         }
     }
 
-    /**
-     * Navigate to the Edit item screen.
-     */
+
     private fun editItem() {
         val action = TaskDetailFragmentDirections.actionTaskDetailFragmentToAddTaskFragment(
             getString(R.string.edit_fragment_title),
@@ -60,9 +58,7 @@ class TaskDetailFragment : Fragment() {
         this.findNavController().navigate(action)
     }
 
-    /**
-     * Displays an alert dialog to get the user's confirmation before deleting the item.
-     */
+
     private fun showConfirmationDialog() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(android.R.string.dialog_alert_title))
@@ -75,9 +71,7 @@ class TaskDetailFragment : Fragment() {
             .show()
     }
 
-    /**
-     * Deletes the current item and navigates to the list fragment.
-     */
+
     private fun deleteItem() {
         viewModel.deleteItem(item)
         findNavController().navigateUp()
@@ -86,18 +80,14 @@ class TaskDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val id = navigationArgs.taskId
-        // Retrieve the item details using the itemId.
-        // Attach an observer on the data (instead of polling for changes) and only update the
-        // the UI when the data actually changes.
+
         viewModel.retrieveItem(id).observe(this.viewLifecycleOwner) { selectedItem ->
             item = selectedItem
             bind(item)
         }
     }
 
-    /**
-     * Called when fragment is destroyed.
-     */
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
