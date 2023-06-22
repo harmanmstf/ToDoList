@@ -3,25 +3,28 @@ package com.example.todolist.ui.list
 import androidx.lifecycle.*
 import com.example.todolist.data.Item
 import com.example.todolist.data.ItemDao
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 
 class ToDoListViewModel(private val itemDao: ItemDao) : ViewModel() {
 
     val allItems: LiveData<List<Item>> = itemDao.getItems().asLiveData()
+    val completedItems : LiveData<List<Item>> = itemDao.getCompletedItems().asLiveData()
 
 
     fun updateItem(
         itemId: Int,
         itemTask: String,
+        isCompleted: Boolean
 
         ) {
-        val updatedItem = getUpdatedItemEntry(itemId, itemTask)
+        val updatedItem = getUpdatedItemEntry(itemId, itemTask, isCompleted)
         updateItem(updatedItem)
     }
 
 
-    private fun updateItem(item: Item) {
+     fun updateItem(item: Item) {
         viewModelScope.launch {
             itemDao.update(item)
         }
@@ -72,13 +75,19 @@ class ToDoListViewModel(private val itemDao: ItemDao) : ViewModel() {
     private fun getUpdatedItemEntry(
         itemId: Int,
         itemTask: String,
+        isCompleted: Boolean
 
         ): Item {
         return Item(
             id = itemId,
             itemTask = itemTask,
+            isCompleted = isCompleted
 
             )
+    }
+
+       fun getCompletedItems(): Flow<List<Item>> {
+        return itemDao.getCompletedItems()
     }
 }
 

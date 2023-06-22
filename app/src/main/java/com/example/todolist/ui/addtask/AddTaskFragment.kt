@@ -76,6 +76,7 @@ class AddTaskFragment : Fragment() {
             viewModel.updateItem(
                 this.navigationArgs.taskId,
                 this.binding.newTask.text.toString(),
+                isCompleted = false
             )
             val action = AddTaskFragmentDirections.actionAddTaskFragmentToToDoListFragment()
             findNavController().navigate(action)

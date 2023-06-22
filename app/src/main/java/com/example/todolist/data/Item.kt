@@ -10,5 +10,6 @@ data class Item(
     val id: Int = 0,
     @ColumnInfo(name = "name")
     val itemTask: String,
+    var isCompleted: Boolean = false
 
     )

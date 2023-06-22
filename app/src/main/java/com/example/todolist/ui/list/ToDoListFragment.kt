@@ -53,5 +53,12 @@ class ToDoListFragment : Fragment() {
             )
             this.findNavController().navigate(action)
         }
+
+        binding.tvCompleted.setOnClickListener {
+            val action = ToDoListFragmentDirections.actionToDoListFragmentToCompletedTaskFragment(
+
+            )
+            this.findNavController().navigate(action)
+        }
     }
 }

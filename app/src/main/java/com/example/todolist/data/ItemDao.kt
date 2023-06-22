@@ -1,6 +1,7 @@
 package com.example.todolist.data
 
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
@@ -12,6 +13,9 @@ interface ItemDao {
 
     @Query("SELECT * from item WHERE id = :id")
     fun getItem(id: Int): Flow<Item>
+
+    @Query("SELECT * FROM item WHERE isCompleted = 1")
+    fun getCompletedItems(): Flow<List<Item>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(item: Item)

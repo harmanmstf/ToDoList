@@ -31,6 +31,18 @@
         app:layout_constraintTop_toBottomOf="@id/task_name"
         android:backgroundTint="@color/purple_200"/>
 
+    <Button
+        android:id="@+id/delete_task"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/done_task"
+        android:backgroundTint="@color/purple_200"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/edit_task"
         android:layout_width="wrap_content"

@@ -44,8 +44,9 @@ class TaskDetailFragment : Fragment() {
     private fun bind(item: Item) {
         binding.apply {
             taskName.text = item.itemTask
-            doneTask.setOnClickListener { showConfirmationDialog() }
+            deleteTask.setOnClickListener { showConfirmationDialog() }
             editTask.setOnClickListener { editItem() }
+            doneTask.setOnClickListener { completeItem() }
         }
     }
 
@@ -75,6 +76,11 @@ class TaskDetailFragment : Fragment() {
     private fun deleteItem() {
         viewModel.deleteItem(item)
         findNavController().navigateUp()
+    }
+
+    private fun completeItem() {
+        item.let { it.isCompleted = true
+        viewModel.updateItem(it)}
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

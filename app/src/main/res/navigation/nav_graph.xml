@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_toDoListFragment_to_addTaskFragment"
             app:destination="@id/addTaskFragment" />
+        <action
+            android:id="@+id/action_toDoListFragment_to_completedTaskFragment"
+            app:destination="@id/completedTaskFragment" />
     </fragment>
     <fragment
         android:id="@+id/taskDetailFragment"
@@ -45,5 +48,14 @@
             android:name="task_id"
             android:defaultValue="-1"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/completedTaskFragment"
+        android:name="com.example.todolist.ui.completedtask.CompletedTaskFragment"
+        android:label="fragment_completed_task"
+        tools:layout="@layout/fragment_completed_task" >
+        <action
+            android:id="@+id/action_completedTaskFragment_to_taskDetailFragment"
+            app:destination="@id/taskDetailFragment" />
     </fragment>
 </navigation>
