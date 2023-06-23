@@ -81,6 +81,7 @@ class TaskDetailFragment : Fragment() {
     private fun completeItem() {
         item.let { it.isCompleted = true
         viewModel.updateItem(it)}
+        findNavController().navigateUp()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

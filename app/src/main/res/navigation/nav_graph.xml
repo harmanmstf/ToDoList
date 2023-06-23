@@ -52,8 +52,8 @@
     <fragment
         android:id="@+id/completedTaskFragment"
         android:name="com.example.todolist.ui.completedtask.CompletedTaskFragment"
-        android:label="fragment_completed_task"
-        tools:layout="@layout/fragment_completed_task" >
+        android:label="Completed Tasks"
+        tools:layout="@layout/fragment_completed_task">
         <action
             android:id="@+id/action_completedTaskFragment_to_taskDetailFragment"
             app:destination="@id/taskDetailFragment" />

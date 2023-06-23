@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ItemDao {
 
-    @Query("SELECT * from item ORDER BY name ASC")
+    @Query("SELECT * FROM item WHERE isCompleted = 0")
     fun getItems(): Flow<List<Item>>
 
     @Query("SELECT * from item WHERE id = :id")
