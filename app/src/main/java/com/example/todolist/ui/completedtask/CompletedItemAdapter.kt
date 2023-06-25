@@ -1,5 +1,7 @@
 package com.example.todolist.ui.completedtask
 
+import android.text.Html
+import android.text.Spanned
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
@@ -47,8 +49,9 @@ class CompletedItemAdapter(private val onItemClicked: (Item) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Item) {
-            binding.itemTitle.text = item.itemTask
-
+            val crossedOutText = "<del>${item.itemTask}</del>"
+            val formattedText: Spanned = Html.fromHtml(crossedOutText)
+            binding.itemTitle.text = formattedText
         }
     }
 
