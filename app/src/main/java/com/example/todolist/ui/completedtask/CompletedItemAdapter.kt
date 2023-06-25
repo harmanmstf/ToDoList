@@ -2,6 +2,8 @@ package com.example.todolist.ui.completedtask
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +13,12 @@ import com.example.todolist.databinding.ListItemBinding
 
 class CompletedItemAdapter(private val onItemClicked: (Item) -> Unit) :
     ListAdapter<Item, CompletedItemAdapter.ItemViewHolder>(CompletedItemAdapter.DiffCallback) {
+
+
+    private val itemCountLiveData: MutableLiveData<Int> = MutableLiveData()
+
+    fun getItemCountLiveData(): LiveData<Int> {
+        return itemCountLiveData}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         return ItemViewHolder(
@@ -28,6 +36,11 @@ class CompletedItemAdapter(private val onItemClicked: (Item) -> Unit) :
             onItemClicked(current)
         }
         holder.bind(current)
+    }
+
+    override fun submitList(list: List<Item>?) {
+        super.submitList(list)
+        itemCountLiveData.value = itemCount
     }
 
     class ItemViewHolder(private var binding: ListItemBinding) :
