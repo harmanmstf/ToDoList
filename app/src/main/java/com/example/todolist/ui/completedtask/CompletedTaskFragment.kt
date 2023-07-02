@@ -8,13 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.todolist.R
 import com.example.todolist.ToDoListApplication
 import com.example.todolist.databinding.FragmentCompletedTaskBinding
-import com.example.todolist.databinding.FragmentToDoListBinding
 import com.example.todolist.ui.list.InventoryViewModelFactory
-import com.example.todolist.ui.list.ItemListAdapter
-import com.example.todolist.ui.list.ToDoListFragmentDirections
 import com.example.todolist.ui.list.ToDoListViewModel
 
 

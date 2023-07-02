@@ -51,9 +51,7 @@ class ToDoListFragment : Fragment() {
             }
         }
 
-        val completedItemAdapter = CompletedItemAdapter { item ->
-            // Item clicked
-        }
+        val completedItemAdapter = CompletedItemAdapter { }
 
 
         viewModel.completedItems.observe(viewLifecycleOwner) { completedItems ->

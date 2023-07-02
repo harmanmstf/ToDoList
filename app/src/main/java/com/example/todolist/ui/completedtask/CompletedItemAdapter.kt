@@ -1,9 +1,10 @@
 package com.example.todolist.ui.completedtask
 
-import android.text.Html
+
 import android.text.Spanned
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.text.HtmlCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
@@ -14,7 +15,7 @@ import com.example.todolist.databinding.ListItemBinding
 
 
 class CompletedItemAdapter(private val onItemClicked: (Item) -> Unit) :
-    ListAdapter<Item, CompletedItemAdapter.ItemViewHolder>(CompletedItemAdapter.DiffCallback) {
+    ListAdapter<Item, CompletedItemAdapter.ItemViewHolder>(DiffCallback) {
 
 
     private val itemCountLiveData: MutableLiveData<Int> = MutableLiveData()
@@ -32,7 +33,7 @@ class CompletedItemAdapter(private val onItemClicked: (Item) -> Unit) :
         )
     }
 
-    override fun onBindViewHolder(holder: CompletedItemAdapter.ItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val current = getItem(position)
         holder.itemView.setOnClickListener {
             onItemClicked(current)
@@ -50,7 +51,7 @@ class CompletedItemAdapter(private val onItemClicked: (Item) -> Unit) :
 
         fun bind(item: Item) {
             val crossedOutText = "<del>${item.itemTask}</del>"
-            val formattedText: Spanned = Html.fromHtml(crossedOutText)
+            val formattedText: Spanned = HtmlCompat.fromHtml(crossedOutText, HtmlCompat.FROM_HTML_MODE_LEGACY)
             binding.itemTitle.text = formattedText
         }
     }
